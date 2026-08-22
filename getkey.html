@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Zen GetKey</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  min-height:100vh;
+  overflow-x:hidden;
+  font-family:Arial,sans-serif;
+  color:#fff;
+  background:
+    radial-gradient(circle at 50% 0%,#063b68,#030916 45%,#010207);
+}
+
+/* SAO */
+
+.stars{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+  z-index:0;
+}
+
+.star{
+  position:absolute;
+  width:3px;
+  height:3px;
+  border-radius:50%;
+  background:#fff;
+
+  box-shadow:
+    0 0 6px #00d9ff,
+    0 0 14px #00d9ff;
+
+  animation:fall linear infinite;
+}
+
+@keyframes fall{
+
+  from{
+    transform:translateY(-20px);
+    opacity:0;
+  }
+
+  20%{
+    opacity:1;
+  }
+
+  90%{
+    opacity:.8;
+  }
+
+  to{
+    transform:translateY(110vh);
+    opacity:0;
+  }
+}
+
+/* NEON */
+
+.neon{
+  position:fixed;
+  width:280px;
+  height:280px;
+  border-radius:50%;
+  filter:blur(90px);
+  opacity:.22;
+  pointer-events:none;
+}
+
+.one{
+  background:#00c8ff;
+  top:-100px;
+  left:-100px;
+}
+
+.two{
+  background:#7a00ff;
+  bottom:-120px;
+  right:-100px;
+}
+
+/* CARD */
+
+.container{
+  position:relative;
+  z-index:2;
+  width:100%;
+  max-width:470px;
+  margin:auto;
+  padding:25px 15px 40px;
+}
+
+.card{
+  padding:25px 20px;
+  border-radius:25px;
+
+  background:rgba(5,12,25,.78);
+
+  border:1px solid rgba(0,217,255,.35);
+
+  box-shadow:
+    0 0 20px rgba(0,200,255,.15),
+    inset 0 0 25px rgba(0,150,255,.05);
+
+  backdrop-filter:blur(14px);
+}
+
+.logo{
+  text-align:center;
+  font-size:40px;
+  font-weight:900;
+  color:#00d9ff;
+
+  text-shadow:
+    0 0 5px #00d9ff,
+    0 0 15px #00d9ff,
+    0 0 30px #008cff;
+}
+
+h1{
+  text-align:center;
+  margin:5px 0 8px;
+  font-size:25px;
+}
+
+.subtitle{
+  text-align:center;
+  color:#91a8bc;
+  font-size:14px;
+}
+
+/* VIDEO */
+
+.video-title{
+  margin-top:22px;
+  margin-bottom:10px;
+  font-weight:bold;
+  color:#00d9ff;
+}
+
+.tiktok-box{
+  overflow:hidden;
+  border-radius:16px;
+  background:#000;
+
+  border:1px solid rgba(0,217,255,.3);
+
+  box-shadow:
+    0 0 18px rgba(0,217,255,.12);
+}
+
+/* INFO */
+
+.info{
+  margin-top:18px;
+  padding:15px;
+  border-radius:15px;
+
+  background:rgba(0,0,0,.25);
+
+  border:1px solid rgba(255,255,255,.06);
+
+  text-align:center;
+  color:#b9c8d8;
+
+  font-size:14px;
+  line-height:1.6;
+}
+
+/* BUTTON */
+
+.btn{
+  width:100%;
+  margin-top:15px;
+  padding:15px;
+
+  border:0;
+  border-radius:14px;
+
+  cursor:pointer;
+
+  color:#fff;
+  font-size:16px;
+  font-weight:bold;
+
+  background:
+    linear-gradient(90deg,#006cff,#00d9ff);
+
+  box-shadow:
+    0 0 10px rgba(0,180,255,.35),
+    0 0 25px rgba(0,180,255,.15);
+
+  transition:.2s;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+
+  box-shadow:
+    0 0 15px rgba(0,217,255,.7),
+    0 0 35px rgba(0,140,255,.3);
+}
+
+/* KEY */
+
+#keybox{
+  display:none;
+  margin-top:18px;
+}
+
+.key{
+  padding:15px;
+  border-radius:12px;
+
+  background:#020711;
+
+  border:1px solid #00bfff;
+
+  color:#00e5ff;
+
+  font-weight:bold;
+
+  word-break:break-all;
+  text-align:center;
+
+  box-shadow:
+    0 0 15px rgba(0,200,255,.2);
+}
+
+.copy{
+  background:#101c2c;
+}
+
+.status{
+  text-align:center;
+  margin-top:10px;
+  font-size:13px;
+  color:#7f96aa;
+}
+
+.back{
+  display:block;
+  margin-top:20px;
+  text-align:center;
+
+  color:#8ca9c2;
+  text-decoration:none;
+}
+
+.back:hover{
+  color:#00d9ff;
+}
+</style>
+</head>
+
+<body>
+
+<div class="neon one"></div>
+<div class="neon two"></div>
+
+<div class="stars" id="stars"></div>
+
+<div class="container">
+
+<div class="card">
+
+<div class="logo">ZEN</div>
+
+<h1>Zen GetKey</h1>
+
+<div class="subtitle">
+🔐 GetKey • Zen Cloud Free
+</div>
+
+<!-- VIDEO TIKTOK -->
+
+<div class="video-title">
+🎬 Video hướng dẫn
+</div>
+
+<div class="tiktok-box">
+
+<blockquote
+class="tiktok-embed"
+cite="https://www.tiktok.com/@dip.lm.huy.dlk.te/video/7676346782812589333"
+data-video-id="7676346782812589333"
+style="max-width:605px;min-width:325px;">
+</blockquote>
+
+</div>
+
+<div class="info">
+
+⭐ Xem video hướng dẫn trước khi GetKey.<br>
+
+🔑 Mỗi lần bấm sẽ tạo một Key mới.
+
+</div>
+
+<button
+class="btn"
+id="getBtn"
+onclick="generateKey()">
+
+🔑 GET KEY
+
+</button>
+
+<div id="keybox">
+
+<div
+class="key"
+id="key">
+</div>
+
+<button
+class="btn copy"
+onclick="copyKey()">
+
+📋 SAO CHÉP KEY
+
+</button>
+
+<div class="status">
+Key demo có hiệu lực trong 10 phút.
+</div>
+
+</div>
+
+<a
+class="back"
+href="index.html">
+
+← Về Zen Cloud
+
+</a>
+
+</div>
+</div>
+
+<script>
+
+/* TẠO SAO */
+
+const stars =
+document.getElementById("stars");
+
+for(let i=0;i<90;i++){
+
+  const star =
+  document.createElement("div");
+
+  star.className="star";
+
+  star.style.left =
+    Math.random()*100+"%";
+
+  star.style.top =
+    Math.random()*-100+"vh";
+
+  const size =
+    Math.random()*3+1;
+
+  star.style.width =
+    size+"px";
+
+  star.style.height =
+    size+"px";
+
+  star.style.animationDuration =
+    (Math.random()*7+4)+"s";
+
+  star.style.animationDelay =
+    (Math.random()*8)+"s";
+
+  stars.appendChild(star);
+}
+
+
+/* TẠO KEY */
+
+function generateKey(){
+
+  const chars =
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+  let key="ZEN-";
+
+  for(let i=0;i<16;i++){
+
+    key += chars[
+      Math.floor(
+        Math.random()*chars.length
+      )
+    ];
+
+    if(
+      i===3 ||
+      i===7 ||
+      i===11
+    ){
+
+      key+="-";
+
+    }
+
+  }
+
+  localStorage.setItem(
+    "zenKey",
+    key
+  );
+
+  localStorage.setItem(
+    "zenKeyTime",
+    Date.now()
+  );
+
+  document.getElementById(
+    "key"
+  ).textContent=key;
+
+  document.getElementById(
+    "keybox"
+  ).style.display="block";
+
+  document.getElementById(
+    "getBtn"
+  ).style.display="none";
+
+}
+
+
+/* COPY */
+
+function copyKey(){
+
+  const key =
+  document.getElementById(
+    "key"
+  ).textContent;
+
+  navigator.clipboard
+  .writeText(key)
+  .then(()=>{
+
+    alert("✅ Đã sao chép Key!");
+
+  })
+  .catch(()=>{
+
+    alert(
+      "❌ Không thể sao chép tự động."
+    );
+
+  });
+
+}
+
+</script>
+
+<script
+async
+src="https://www.tiktok.com/embed.js">
+</script>
+
+</body>
+</html>
