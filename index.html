@@ -6,109 +6,744 @@
 <title>Zen Cloud Free</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
 body{
-  margin:0;
   min-height:100vh;
   font-family:Arial,sans-serif;
   color:#fff;
   background:
-    radial-gradient(circle at top,#123b72,#050914 55%,#02040a);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:20px;
+    radial-gradient(circle at top,#063b68,#030916 45%,#010207);
+  overflow-x:hidden;
 }
 
-.card{
+/* SAO */
+
+#stars{
+  position:fixed;
+  inset:0;
+  overflow:hidden;
+  pointer-events:none;
+  z-index:0;
+}
+
+.star{
+  position:absolute;
+  width:3px;
+  height:3px;
+  border-radius:50%;
+  background:#fff;
+  box-shadow:
+    0 0 6px #00d9ff,
+    0 0 14px #00d9ff;
+  animation:fall linear infinite;
+}
+
+@keyframes fall{
+  from{
+    transform:translateY(-20px);
+    opacity:0;
+  }
+
+  20%{
+    opacity:1;
+  }
+
+  90%{
+    opacity:.8;
+  }
+
+  to{
+    transform:translateY(110vh);
+    opacity:0;
+  }
+}
+
+/* NEON */
+
+.neon{
+  position:fixed;
+  width:280px;
+  height:280px;
+  border-radius:50%;
+  filter:blur(100px);
+  opacity:.2;
+  pointer-events:none;
+  z-index:0;
+}
+
+.neon1{
+  background:#00c8ff;
+  top:-100px;
+  left:-100px;
+}
+
+.neon2{
+  background:#7a00ff;
+  right:-100px;
+  bottom:-100px;
+}
+
+/* CONTAINER */
+
+.container{
+  position:relative;
+  z-index:2;
   width:100%;
-  max-width:480px;
-  padding:32px 22px;
+  max-width:520px;
+  margin:auto;
+  padding:25px 15px 40px;
+}
+
+/* HEADER */
+
+.header{
   text-align:center;
-  background:rgba(255,255,255,.07);
-  border:1px solid rgba(0,200,255,.25);
-  border-radius:24px;
-  backdrop-filter:blur(15px);
-  box-shadow:0 0 35px rgba(0,180,255,.15);
+  padding:25px 15px;
 }
 
 .logo{
-  font-size:42px;
+  font-size:48px;
   font-weight:900;
-  color:#00c8ff;
-  text-shadow:0 0 18px #00c8ff;
+  color:#00d9ff;
+
+  text-shadow:
+    0 0 5px #00d9ff,
+    0 0 15px #00d9ff,
+    0 0 35px #008cff;
 }
 
-h1{
-  margin:8px 0;
+.header h1{
+  margin-top:5px;
   font-size:28px;
 }
 
-p{
-  color:#aebdce;
+.header p{
+  margin-top:8px;
+  color:#91a8bc;
 }
+
+/* CARD */
+
+.card{
+  margin-top:15px;
+  padding:20px;
+
+  border-radius:22px;
+
+  background:rgba(5,12,25,.78);
+
+  border:1px solid rgba(0,217,255,.3);
+
+  backdrop-filter:blur(15px);
+
+  box-shadow:
+    0 0 25px rgba(0,180,255,.12);
+}
+
+.title{
+  color:#00d9ff;
+  font-size:18px;
+  font-weight:bold;
+  margin-bottom:15px;
+}
+
+/* CLOUD ITEM */
+
+.item{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:15px;
+  margin:10px 0;
+
+  border-radius:15px;
+
+  background:rgba(255,255,255,.045);
+
+  border:1px solid rgba(255,255,255,.07);
+
+  transition:.2s;
+}
+
+.item:hover{
+  transform:translateY(-2px);
+
+  border-color:rgba(0,217,255,.5);
+
+  box-shadow:
+    0 0 15px rgba(0,217,255,.12);
+}
+
+.item-info{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.icon{
+  width:42px;
+  height:42px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:12px;
+
+  background:linear-gradient(
+    135deg,
+    #007cff,
+    #00d9ff
+  );
+
+  font-size:21px;
+}
+
+.item-name{
+  font-weight:bold;
+}
+
+.item-desc{
+  margin-top:4px;
+  color:#7f96aa;
+  font-size:12px;
+}
+
+/* BUTTON */
 
 .btn{
   display:block;
+
+  padding:11px 15px;
+
+  border-radius:11px;
+
+  color:#fff;
+  text-decoration:none;
+  border:0;
+
+  font-size:13px;
+  font-weight:bold;
+
+  background:
+    linear-gradient(
+      90deg,
+      #007cff,
+      #00d9ff
+    );
+
+  box-shadow:
+    0 0 12px rgba(0,180,255,.2);
+
+  cursor:pointer;
+  transition:.2s;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+  box-shadow:
+    0 0 20px rgba(0,217,255,.4);
+}
+
+/* GETKEY */
+
+.getkey{
+  margin-top:20px;
+  text-align:center;
+}
+
+.getkey .btn{
   width:100%;
   padding:15px;
-  margin:13px 0;
-  border-radius:14px;
-  text-decoration:none;
-  color:#fff;
-  font-weight:bold;
-  background:linear-gradient(90deg,#007cff,#00d9ff);
-  box-shadow:0 0 18px rgba(0,190,255,.3);
+  font-size:16px;
 }
+
+/* RULE */
 
 .rule{
-  margin-top:22px;
-  padding:15px;
+  margin-top:20px;
+
+  padding:16px;
+
   border-radius:15px;
-  background:rgba(0,0,0,.22);
-  font-size:14px;
-  line-height:1.6;
+
+  background:rgba(0,0,0,.25);
+
+  color:#aebdce;
+
+  font-size:13px;
+  line-height:1.7;
 }
 
-small{
-  color:#70859c;
+.rule b{
+  color:#00d9ff;
+}
+
+/* FOOTER */
+
+.footer{
+  text-align:center;
+  margin-top:25px;
+
+  color:#61778c;
+  font-size:12px;
+}
+
+/* GETKEY PAGE */
+
+#getkey-page{
+  display:none;
+}
+
+.video-title{
+  color:#00d9ff;
+  font-weight:bold;
+  margin:15px 0 10px;
+}
+
+.tiktok-box{
+  overflow:hidden;
+  border-radius:16px;
+  background:#000;
+  border:1px solid rgba(0,217,255,.3);
+  box-shadow:0 0 18px rgba(0,217,255,.12);
+  margin-bottom:15px;
+}
+
+.info{
+  padding:15px;
+  border-radius:15px;
+  background:rgba(0,0,0,.25);
+  border:1px solid rgba(255,255,255,.06);
+  text-align:center;
+  color:#b9c8d8;
+  font-size:14px;
+  line-height:1.6;
+  margin-bottom:15px;
+}
+
+#keybox{
+  display:none;
+  margin-top:15px;
+}
+
+.key{
+  padding:15px;
+  border-radius:12px;
+  background:#020711;
+  border:1px solid #00bfff;
+  color:#00e5ff;
+  font-weight:bold;
+  word-break:break-all;
+  text-align:center;
+  box-shadow:0 0 15px rgba(0,200,255,.2);
+  margin-bottom:15px;
+}
+
+.copy{
+  background:#101c2c;
+  width:100%;
+}
+
+.status{
+  text-align:center;
+  margin-top:10px;
+  font-size:13px;
+  color:#7f96aa;
+}
+
+.back-btn{
+  display:block;
+  margin-top:20px;
+  text-align:center;
+  color:#8ca9c2;
+  text-decoration:none;
+  font-size:14px;
+}
+
+.back-btn:hover{
+  color:#00d9ff;
 }
 </style>
 </head>
 
 <body>
 
-<div class="card">
+<div class="neon neon1"></div>
+<div class="neon neon2"></div>
 
-  <div class="logo">ZEN</div>
+<div id="stars"></div>
 
-  <h1>Zen Cloud Free</h1>
+<div class="container">
 
-  <p>☁️ Cloud miễn phí • 🔑 GetKey • ⚡ ZenMods</p>
+  <!-- HOME PAGE -->
+  <div id="home-page">
 
-  <a class="btn" href="getkey.html">
-    🔑 GET KEY
-  </a>
+    <!-- HEADER -->
 
-  <a class="btn"
-     href="https://youtube.com/@UserZenMods"
-     target="_blank">
-    ▶ YouTube @UserZenMods
-  </a>
+    <div class="header">
 
-  <div class="rule">
-    <b>📜 NỘI QUY</b><br><br>
-    Không tiếp kid lỏ 😭<br>
-    Không spam / phá web<br>
-    Support Telegram: <b>UserZenModder</b>
+      <div class="logo">
+        ZEN
+      </div>
+
+      <h1>
+        Zen Cloud Free
+      </h1>
+
+      <p>
+        ☁️ Cloud miễn phí • ZenMods
+      </p>
+
+    </div>
+
+
+    <!-- CLOUD -->
+
+    <div class="card">
+
+      <div class="title">
+        ☁️ Zen Cloud
+      </div>
+
+
+      <div class="item">
+
+        <div class="item-info">
+
+          <div class="icon">
+            ⚡
+          </div>
+
+          <div>
+            <div class="item-name">
+              Zen Tool
+            </div>
+
+            <div class="item-desc">
+              Công cụ miễn phí
+            </div>
+          </div>
+
+        </div>
+
+        <button class="btn" onclick="showGetKey()">
+          GET
+        </button>
+
+      </div>
+
+
+      <div class="item">
+
+        <div class="item-info">
+
+          <div class="icon">
+            🔑
+          </div>
+
+          <div>
+            <div class="item-name">
+              Zen GetKey
+            </div>
+
+            <div class="item-desc">
+              Nhận Key miễn phí
+            </div>
+          </div>
+
+        </div>
+
+        <button class="btn" onclick="showGetKey()">
+          GET KEY
+        </button>
+
+      </div>
+
+
+      <div class="item">
+
+        <div class="item-info">
+
+          <div class="icon">
+            🛠️
+          </div>
+
+          <div>
+            <div class="item-name">
+              Zen Mods
+            </div>
+
+            <div class="item-desc">
+              Khu vực công cụ ZenMods
+            </div>
+          </div>
+
+        </div>
+
+        <button class="btn" onclick="showGetKey()">
+          OPEN
+        </button>
+
+      </div>
+
+
+      <!-- GET KEY -->
+
+      <div class="getkey">
+
+        <button class="btn" onclick="showGetKey()">
+
+          🔐 GET KEY NGAY
+
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- RULE -->
+
+    <div class="rule">
+
+      <b>📜 NỘI QUY ZEN CLOUD</b>
+
+      <br><br>
+
+      • Không spam / phá web<br>
+      • Không chia sẻ Key bừa bãi<br>
+      • Không tiếp kid lỏ 😭<br>
+      • Support Telegram:
+        <b>UserZenModder</b><br>
+      • YouTube:
+        <b>@UserZenMods</b>
+
+    </div>
+
+
+    <div class="footer">
+      © 2026 Zen Cloud Free • ZenMods
+    </div>
+
   </div>
 
-  <br>
 
-  <small>© 2026 Zen Cloud Free</small>
+  <!-- GETKEY PAGE -->
+  <div id="getkey-page">
+
+    <div class="header">
+
+      <div class="logo">
+        ZEN
+      </div>
+
+      <h1>
+        Zen GetKey
+      </h1>
+
+      <p>
+        🔐 GetKey • Zen Cloud Free
+      </p>
+
+    </div>
+
+    <div class="card">
+
+      <div class="video-title">
+        🎬 Video hướng dẫn
+      </div>
+
+      <div class="tiktok-box">
+        <blockquote
+        class="tiktok-embed"
+        cite="https://www.tiktok.com/@dip.lm.huy.dlk.te/video/7676346782812589333"
+        data-video-id="7676346782812589333"
+        style="max-width:605px;min-width:325px;">
+        </blockquote>
+      </div>
+
+      <div class="info">
+        ⭐ Xem video hướng dẫn trước khi GetKey.<br>
+        🔑 Mỗi lần bấm sẽ tạo một Key mới.
+      </div>
+
+      <button class="btn" id="getBtn" onclick="generateKey()" style="width:100%;">
+        🔑 GET KEY
+      </button>
+
+      <div id="keybox">
+
+        <div class="key" id="key">
+        </div>
+
+        <button class="btn copy" onclick="copyKey()">
+          📋 SAO CHÉP KEY
+        </button>
+
+        <div class="status">
+          Key demo có hiệu lực trong 10 phút.
+        </div>
+
+      </div>
+
+      <a class="back-btn" onclick="showHome()">
+        ← Về Zen Cloud
+      </a>
+
+    </div>
+
+    <div class="footer">
+      © 2026 Zen Cloud Free • ZenMods
+    </div>
+
+  </div>
 
 </div>
+
+
+<script>
+
+/* TẠO SAO */
+
+const stars =
+document.getElementById("stars");
+
+for(let i=0;i<100;i++){
+
+  const star =
+    document.createElement("div");
+
+  star.className="star";
+
+  star.style.left =
+    Math.random()*100+"%";
+
+  star.style.top =
+    Math.random()*-100+"vh";
+
+  const size =
+    Math.random()*3+1;
+
+  star.style.width =
+    size+"px";
+
+  star.style.height =
+    size+"px";
+
+  star.style.animationDuration =
+    (Math.random()*7+4)+"s";
+
+  star.style.animationDelay =
+    (Math.random()*8)+"s";
+
+  stars.appendChild(star);
+}
+
+/* CHUYỂN TRANG */
+
+function showHome(){
+  document.getElementById("home-page").style.display="block";
+  document.getElementById("getkey-page").style.display="none";
+}
+
+function showGetKey(){
+  document.getElementById("home-page").style.display="none";
+  document.getElementById("getkey-page").style.display="block";
+}
+
+/* TẠO KEY */
+
+function generateKey(){
+
+  const chars =
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+  let key="ZEN-";
+
+  for(let i=0;i<16;i++){
+
+    key += chars[
+      Math.floor(
+        Math.random()*chars.length
+      )
+    ];
+
+    if(
+      i===3 ||
+      i===7 ||
+      i===11
+    ){
+
+      key+="-";
+
+    }
+
+  }
+
+  localStorage.setItem(
+    "zenKey",
+    key
+  );
+
+  localStorage.setItem(
+    "zenKeyTime",
+    Date.now()
+  );
+
+  document.getElementById(
+    "key"
+  ).textContent=key;
+
+  document.getElementById(
+    "keybox"
+  ).style.display="block";
+
+  document.getElementById(
+    "getBtn"
+  ).style.display="none";
+
+}
+
+
+/* COPY */
+
+function copyKey(){
+
+  const key =
+  document.getElementById(
+    "key"
+  ).textContent;
+
+  navigator.clipboard
+  .writeText(key)
+  .then(()=>{
+
+    alert("✅ Đã sao chép Key!");
+
+  })
+  .catch(()=>{
+
+    alert(
+      "❌ Không thể sao chép tự động."
+    );
+
+  });
+
+}
+
+</script>
+
+<script
+async
+src="https://www.tiktok.com/embed.js">
+</script>
 
 </body>
 </html>
